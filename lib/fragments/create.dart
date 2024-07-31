@@ -65,6 +65,7 @@ class CreateFragment extends StatelessWidget {
           }
 
           await createTask();
+          // ignore: use_build_context_synchronously
           Provider.of<NavigationAdapter>(context, listen: false)
               .selectedFragment = AppFragment.home;
         },
