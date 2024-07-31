@@ -14,19 +14,20 @@ class TasksAdapter with ChangeNotifier {
 
   List<EnhancedTask> get tasks => _tasks;
 
+  // Start database connection then render home page
   Future<void> loadDatabase() async {
     await _service.init();
-    await loadTasks();
-    notifyListeners();
+    await _loadTasks();
   }
 
-  Future<void> loadTasks() async {
+  Future<void> _loadTasks() async {
     _tasks = await _service.selectTasks();
     notifyListeners();
   }
 
+  // Add task to database then re-render home page
   Future<void> insertTask(Task task) async {
     await _service.insertTask(task);
-    loadTasks();
+    _loadTasks();
   }
 }

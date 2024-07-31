@@ -84,7 +84,7 @@ class TaskCard extends StatelessWidget {
                             ),
                             const SizedBox(width: 2.0),
                             Text(
-                              task.dueStringFromDue(task.due),
+                              task.dueString ?? 'soon',
                               style: TextStyle(
                                 color: timeColour,
                                 fontWeight: FontWeight.bold,
