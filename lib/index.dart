@@ -41,6 +41,19 @@ class VariantLayout extends StatelessWidget {
             icon: const Icon(Icons.menu),
           );
         }),
+        actions: [
+          Visibility(
+            visible:
+                Provider.of<NavigationAdapter>(context).allowBackNavigation,
+            child: IconButton(
+              onPressed: () => {
+                Provider.of<NavigationAdapter>(context, listen: false)
+                    .selectedFragment = AppFragment.home
+              },
+              icon: const Icon(Icons.arrow_back),
+            ),
+          ),
+        ],
       ),
       body: Row(
         // covers the whole screen

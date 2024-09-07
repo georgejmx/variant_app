@@ -7,6 +7,8 @@ class NavigationAdapter with ChangeNotifier {
 
   AppFragment get selectedFragment => _selectedFragment;
 
+  bool get allowBackNavigation => _selectedFragment != AppFragment.home;
+
   set selectedFragment(AppFragment fragment) {
     _selectedFragment = fragment;
     notifyListeners();

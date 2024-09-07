@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:variant_app/entities/enhanced_task.dart';
 
+import 'package:variant_app/entities/enhanced_task.dart';
 import 'package:variant_app/entities/task.dart';
 import './elevated_tag.dart';
 
