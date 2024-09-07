@@ -17,8 +17,8 @@ jobs:
         with:
           channel: 'beta'
       - run: flutter pub get
-      - run: flutter analyze .
-      - run: flutter pub run build_runner build
+      - run: flutter analyze lib
+      - run: dart run build_runner build
       - run: flutter test
       - run: flutter build apk
       - uses: actions/upload-artifact@v1
