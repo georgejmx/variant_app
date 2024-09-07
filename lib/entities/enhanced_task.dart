@@ -1,15 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:variant_app/entities/task.dart';
 
 mixin TaskEnhancer on Task {
-  Color? priorityColour(Priority priorityType) {
-    if (priorityType == Priority.importancy) {
-      return Colors.purple[importancy * 100];
-    }
-    return Colors.orange[urgency * 100];
-  }
-
   String? get dueString {
     if (due == null) {
       return null;

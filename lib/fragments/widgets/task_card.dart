@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:variant_app/entities/enhanced_task.dart';
 import 'package:variant_app/entities/task.dart';
+import 'package:variant_app/fragments/widgets/eisenhower_rating.dart';
 import './elevated_tag.dart';
 
 class TaskCard extends StatelessWidget {
@@ -42,26 +43,12 @@ class TaskCard extends StatelessWidget {
                 Row(
                   children: [
                     ElevatedTag(tag: task.tag, isSelected: false),
-                    const SizedBox(width: 8.0),
-                    CircleAvatar(
-                      radius: 12,
-                      backgroundColor: task.priorityColour(Priority.importancy),
-                      child: const Icon(
-                        Icons.approval,
-                        color: Colors.white,
-                        size: 15,
-                      ),
-                    ),
-                    const SizedBox(width: 8.0),
-                    CircleAvatar(
-                      radius: 12,
-                      backgroundColor: task.priorityColour(Priority.urgency),
-                      child: const Icon(
-                        Icons.warning_amber,
-                        color: Colors.white,
-                        size: 15,
-                      ),
-                    ),
+                    const SizedBox(width: 12.0),
+                    EisenhowerRating(
+                        priority: Priority.importancy, rating: task.importancy),
+                    const SizedBox(width: 10.0),
+                    EisenhowerRating(
+                        priority: Priority.urgency, rating: task.urgency),
                   ],
                 ),
                 task.due != null

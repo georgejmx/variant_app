@@ -11,14 +11,11 @@ void main() {
 
     expect(find.text("some random small task.."), findsOneWidget);
     expect(find.text("self-care"), findsOneWidget);
-
-    final importancyFinder = find.byIcon(Icons.approval);
-    expect(importancyFinder, findsOneWidget);
-
-    final urgencyFinder = find.byIcon(Icons.warning_amber);
-    expect(urgencyFinder, findsOneWidget);
+    expect(find.byIcon(Icons.approval), findsOneWidget);
+    expect(find.byIcon(Icons.warning_amber), findsOneWidget);
 
     expect(find.text("Overdue"), findsNothing);
+    expect(find.text("More than a week"), findsNothing);
   });
 
   testWidgets("TaskCard displays the correct due", (tester) async {
