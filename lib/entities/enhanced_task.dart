@@ -20,15 +20,15 @@ mixin TaskEnhancer on Task {
       return 'Overdue';
     }
 
-    if (due!.isAfter(now.add(const Duration(days: 1)))) {
+    if (!due!.isAfter(now.add(const Duration(days: 1)))) {
       return 'Less than a day';
     }
 
-    if (due!.isAfter(now.add(const Duration(days: 3)))) {
+    if (!due!.isAfter(now.add(const Duration(days: 3)))) {
       return 'Less than 3 days';
     }
 
-    if (due!.isAfter(now.add(const Duration(days: 7)))) {
+    if (!due!.isAfter(now.add(const Duration(days: 7)))) {
       return 'Less than a week';
     }
     return 'More than a week';
