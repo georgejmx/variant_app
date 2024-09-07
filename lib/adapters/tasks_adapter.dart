@@ -8,8 +8,8 @@ class TasksAdapter with ChangeNotifier {
   late final DatabaseService _service;
   late List<EnhancedTask> _tasks;
 
-  TasksAdapter() {
-    _service = DatabaseService();
+  TasksAdapter(DatabaseService service) {
+    _service = service;
   }
 
   List<EnhancedTask> get tasks => _tasks;

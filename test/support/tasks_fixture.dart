@@ -17,3 +17,11 @@ List<EnhancedTask> mockEnhancedTasks = [
     DateTime.now().add(const Duration(days: 1, hours: 2)),
   ),
 ];
+
+EnhancedTask mockNewTask = EnhancedTask(
+  "do the unit test for the settings adapter",
+  Tag.chore,
+  6,
+  7,
+  DateTime.now().add(const Duration(hours: 22)),
+);

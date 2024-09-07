@@ -17,5 +17,6 @@ flutter run
 
 ```sh
 flutter analyze .
+flutter pub run build_runner build
 flutter test
 ```
