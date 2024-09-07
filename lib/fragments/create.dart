@@ -6,18 +6,22 @@ import 'package:variant_app/adapters/tasks_adapter.dart';
 import 'package:variant_app/adapters/navigation_adapter.dart';
 import './widgets/create_task_panel.dart';
 
-// ignore: must_be_immutable
-class CreateFragment extends StatelessWidget {
-  CreateFragment({super.key, required this.tasksAdapter});
+class CreateFragment extends StatefulWidget {
+  const CreateFragment({super.key, required this.tasksAdapter});
 
   final TasksAdapter tasksAdapter;
 
+  @override
+  State<CreateFragment> createState() => _CreateFragmentState();
+}
+
+class _CreateFragmentState extends State<CreateFragment> {
   Map<String, dynamic> taskPayload = {
     'body': null,
     'tag': Tag.chore,
     'importancy': 5,
     'urgency': 5,
-    'due': DateTime.now()..add(const Duration(days: 7))
+    'due': null
   };
 
   void onParamChange(String paramType, dynamic param) {
@@ -41,9 +45,9 @@ class CreateFragment extends StatelessWidget {
       taskPayload['tag'] as Tag,
       taskPayload['importancy'] as int,
       taskPayload['urgency'] as int,
-      taskPayload['due'] as DateTime,
+      taskPayload['due'],
     );
-    await tasksAdapter.insertTask(task);
+    await widget.tasksAdapter.insertTask(task);
   }
 
   @override

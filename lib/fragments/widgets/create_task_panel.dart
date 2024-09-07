@@ -77,6 +77,7 @@ class _CreateTaskPanelState extends State<CreateTaskPanel> {
           const CreateTaskSeparator(name: "Importancy"),
           Slider(
             value: importancy.toDouble(),
+            min: 1,
             max: 10,
             divisions: 10,
             label: importancy.toString(),
@@ -91,6 +92,7 @@ class _CreateTaskPanelState extends State<CreateTaskPanel> {
           const CreateTaskSeparator(name: "Urgency"),
           Slider(
             value: urgency.toDouble(),
+            min: 1,
             max: 10,
             divisions: 10,
             label: urgency.toString(),

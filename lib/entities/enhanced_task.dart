@@ -1,35 +1,28 @@
-import 'package:flutter/material.dart';
-
 import 'package:variant_app/entities/task.dart';
 
 mixin TaskEnhancer on Task {
-  Color? priorityColour(Priority priorityType) {
-    if (priorityType == Priority.importancy) {
-      return Colors.purple[importancy * 100];
-    }
-    return Colors.orange[urgency * 100];
-  }
-
-  String dueStringFromDue(DateTime? due) {
+  String? get dueString {
     if (due == null) {
-      return '';
-    }
-    var now = DateTime.now();
-    var daysRemaining = now.difference(due).inDays;
-    if (daysRemaining < 0) {
-      return 'Overdue';
-    } else if (daysRemaining == 0) {
-      var hoursRemaining = now.difference(due).inHours;
-      if (hoursRemaining <= 1) {
-        return '1 hour';
-      }
-      return '$hoursRemaining hours';
+      return null;
     }
 
-    if (daysRemaining == 1) {
-      return '1 day';
+    var now = DateTime.now();
+    if (now.isAfter(due!)) {
+      return 'Overdue';
     }
-    return '$daysRemaining days';
+
+    if (!due!.isAfter(now.add(const Duration(days: 1)))) {
+      return 'Less than a day';
+    }
+
+    if (!due!.isAfter(now.add(const Duration(days: 3)))) {
+      return 'Less than 3 days';
+    }
+
+    if (!due!.isAfter(now.add(const Duration(days: 7)))) {
+      return 'Less than a week';
+    }
+    return 'More than a week';
   }
 }
 

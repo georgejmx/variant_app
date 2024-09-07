@@ -27,9 +27,16 @@ class DatabaseService {
 
     await dbInstance.insert(
       'task',
-      task.toMap(),
+      task.toDatabaseInput(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
+  }
+
+  DateTime? _getDue(dynamic dbValue) {
+    if (dbValue == null || dbValue is! int) {
+      return null;
+    }
+    return DateTime.fromMicrosecondsSinceEpoch(dbValue);
   }
 
   Future<List<EnhancedTask>> selectTasks() async {
@@ -45,7 +52,7 @@ class DatabaseService {
           Tag.values[taskMap['tag'] as int],
           taskMap['importancy'] as int,
           taskMap['urgency'] as int,
-          DateTime.fromMicrosecondsSinceEpoch(taskMap['due'] as int),
+          _getDue(taskMap['due']),
         ),
       );
     }

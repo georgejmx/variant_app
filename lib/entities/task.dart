@@ -11,13 +11,13 @@ class Task {
 
   const Task(this.body, this.tag, this.importancy, this.urgency, this.due);
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toDatabaseInput() {
     return {
       'body': body,
       'tag': tag.index,
       'importancy': importancy,
       'urgency': urgency,
-      'due': due?.microsecondsSinceEpoch
+      'due': (due != null) ? due?.microsecondsSinceEpoch : null
     };
   }
 }

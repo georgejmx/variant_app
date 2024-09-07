@@ -8,25 +8,26 @@ class TasksAdapter with ChangeNotifier {
   late final DatabaseService _service;
   late List<EnhancedTask> _tasks;
 
-  TasksAdapter() {
-    _service = DatabaseService();
+  TasksAdapter(DatabaseService service) {
+    _service = service;
   }
 
   List<EnhancedTask> get tasks => _tasks;
 
+  // Start database connection then render home page
   Future<void> loadDatabase() async {
     await _service.init();
-    await loadTasks();
-    notifyListeners();
+    await _loadTasks();
   }
 
-  Future<void> loadTasks() async {
+  Future<void> _loadTasks() async {
     _tasks = await _service.selectTasks();
     notifyListeners();
   }
 
+  // Add task to database then re-render home page
   Future<void> insertTask(Task task) async {
     await _service.insertTask(task);
-    loadTasks();
+    _loadTasks();
   }
 }

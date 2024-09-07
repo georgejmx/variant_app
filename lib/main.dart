@@ -5,13 +5,15 @@ import './index.dart';
 import './adapters/settings_adapter.dart';
 import './adapters/tasks_adapter.dart';
 import './adapters/navigation_adapter.dart';
+import './adapters/services/database_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final settingsAdapter = SettingsAdapter();
   await settingsAdapter.loadSettings();
 
-  final tasksAdapter = TasksAdapter();
+  final databaseService = DatabaseService();
+  final tasksAdapter = TasksAdapter(databaseService);
   await tasksAdapter.loadDatabase();
 
   runApp(VariantApp(
